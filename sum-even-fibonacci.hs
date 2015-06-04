@@ -2,9 +2,12 @@
 -- Euler Project: Level 2
 --fib n = if n > 2 then fib (n-1) + fib (n-2) else 1
 
-fib n | n == 1 = 1
-	  | n == 2 = 1
-	  | otherwise = fib (n - 1) + fib ( n - 2)
+sumEvenFib n = sum [x | x <- takeWhile (<= n) fib, even x]
+	where fib = 1 : 1 : zipWith (+) fib (tail fib)
+
+main = print $ sumEvenFib 1000000000
 
 
-main = print $ fib 10
+
+
+
